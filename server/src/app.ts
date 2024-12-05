@@ -32,8 +32,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Soroswap Finance API');
   });
 
-
-// // Error handler middleware
-// app.use(errorHandler)
+// Error handler middleware
+app.use(errorHandler)
 
 export default app;

@@ -1,17 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import getPairs from '../utils/pairs/get-pairs';
 import { Network } from '../types/network';
-import { TokenType } from '../types/tokens';
-import getTokens from '../utils/tokens/get-tokens';
-import { fetchTokenList } from '../services/tokens';
-
-interface MercuryPair {
-    tokenA: string;
-    tokenB: string;
-    address: string;
-    reserveA: string;
-    reserveB: string;
-  }
 
 export const getHandlerPairs = async (
     req: Request, 
@@ -24,8 +13,6 @@ export const getHandlerPairs = async (
         address: string,
         full: string
     };
-
-    console.log(protocol, network, address, full);
     
     if (!protocol || !network) {
         res.status(400).json({ error: 'Protocol and network parameters are required' });
@@ -47,31 +34,22 @@ export const getHandlerPairs = async (
     }
 
     try {
-        const tokenList: TokenType[] = await fetchTokenList({ network: network as Network });
-        const allowedContracts = tokenList.map(token => token.contract);
+      
+        const pairs = await getPairs(protocolName, networkName as Network);
 
-        const pairs = await getPairs(protocolName, networkName);
-
-        if ((full !== 'true') && !address) {
+        if (full) {
             res.json(pairs);
             return;
-        }
-
-        const filteredPairs = pairs.filter((pair: MercuryPair) => 
-            allowedContracts.includes(pair.tokenA) && allowedContracts.includes(pair.tokenB)
-        );
-
-        if (address) {
-            const pool = pairs.find((pair: MercuryPair) => pair.address === address);
-            if (pool) {
-                res.json(pool);
-            } else {
-                res.status(404).json({ error: 'Pair not found for the provided address' });
-            }
+          }
+      
+      
+          if (address) {
+            const pool = pairs.find((pair) => pair.address === address);
+            res.json(pool);
             return;
-        }
-
-        res.json(filteredPairs);
+          }
+      
+        res.json(pairs);
         return;
     } catch (error: any) {
         next(error);

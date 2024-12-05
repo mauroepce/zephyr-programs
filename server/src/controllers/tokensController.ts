@@ -1,10 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import getTokens from '../utils/tokens/get-tokens';
-import path from 'path';
-import fs from 'fs';
-import { fetchTokenList } from '../services/tokens';
 import { Network } from '../types/network';
-import { TokenType } from '../types/tokens';
 
 interface Token {
     name: string;
@@ -27,12 +23,6 @@ export const getHandlerTokens = async (
         protocol: string, 
         network: string,
         address: string
-    };
-    
-    const environment = process.env.ENVIRONMENT
-    let isDev = false;
-    if (environment === 'dev') {
-        isDev = true;
     };
     
     if (
@@ -64,7 +54,7 @@ export const getHandlerTokens = async (
         const protocolTokens = await getTokens(protocol, networkName as Network);
     
         if (address) {
-          const filteredToken = protocolTokens.find((token: Token) => token.contract === address);
+        const filteredToken = protocolTokens.find((token: Token) => token.contract === address);
           if (filteredToken) {
             res.json(filteredToken);
             return;

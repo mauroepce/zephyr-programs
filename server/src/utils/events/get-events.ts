@@ -1,5 +1,5 @@
 import * as StellarSdk from '@stellar/stellar-sdk';
-import { getMercuryInstance } from './mercury';
+import { getMercuryInstance } from '../zephyr/mercury';
 import { getZephyrTable } from './get-table';
 import { zephyrTableToGraphQLParser } from 'mercury-sdk';
 import { mockData } from './loadMockData';

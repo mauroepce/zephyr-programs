@@ -1,8 +1,8 @@
 import * as StellarSdk from '@stellar/stellar-sdk';
 import { zephyrTableToGraphQLParser } from 'mercury-sdk';
-import { getZephyrTable } from './get-table';
-import { getMercuryInstance } from './mercury';
-import { mockData } from './loadMockData';
+import { getZephyrTable } from '../get-table';
+import { getMercuryInstance } from '../../zephyr/mercury';
+import { mockData } from '../loadMockData';
 interface Pair {
     tokenA: string;
     tokenB: string;

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import getTokens from '../utils/get-tokens';
+import getTokens from '../utils/tokens/get-tokens';
 import path from 'path';
 import fs from 'fs';
 import { fetchTokenList } from '../services/tokens';

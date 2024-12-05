@@ -37,8 +37,8 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@stellar/stellar-sdk": "^12.1.0",
     "@types/cors": "^2.8.17",
-    "typescript": "^5.7.2",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.9.1",
@@ -46,8 +46,8 @@
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.7",
     "@types/yamljs": "^0.2.34",
-    "@stellar/stellar-sdk": "^12.1.0",
     "axios": "^1.7.7",
+    "bignumber.js": "^9.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
@@ -55,11 +55,13 @@
     "mercury-sdk": "0.2.6",
     "path": "^0.12.7",
     "serverless-http": "^3.2.0",
+    "soroswap-router-sdk": "1.2.6",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-dist": "^5.18.2",
     "swagger-ui-express": "^5.0.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2",
     "yamljs": "^0.3.0"
   }
 }

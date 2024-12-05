@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import getEvents from '../utils/get-events';
-import getTokens from '../utils/get-tokens';
+// import getEvents from '../utils/get-events';
+import getTokens from '../utils/tokens/get-tokens';
 import { Network } from '../types/network';
 
 export const getHandlerEvents = async (
@@ -38,30 +38,30 @@ export const getHandlerEvents = async (
     }
 
     try {
-        const events = await getEvents(protocol, network.toUpperCase() as 'MAINNET' | 'TESTNET', type);
+        // const events = await getEvents(protocol, network.toUpperCase() as 'MAINNET' | 'TESTNET', type);
 
-        let filteredEvents = events;
+        // let filteredEvents = events;
 
-        if (type) {
-            const eventType = type.toLowerCase();
-            if (!['swap', 'add', 'remove'].includes(eventType)) {
-                res.status(400).json({ error: 'Invalid Event Type' });
-                return;
-            }
-            filteredEvents = filteredEvents.filter(event => event.eType === eventType);
-        }
+        // if (type) {
+        //     const eventType = type.toLowerCase();
+        //     if (!['swap', 'add', 'remove'].includes(eventType)) {
+        //         res.status(400).json({ error: 'Invalid Event Type' });
+        //         return;
+        //     }
+        //     filteredEvents = filteredEvents.filter(event => event.eType === eventType);
+        // }
 
-        if (address) {
-            filteredEvents = filteredEvents.filter(event => (event.tokenA === address || event.tokenB === address));
-        }
+        // if (address) {
+        //     filteredEvents = filteredEvents.filter(event => (event.tokenA === address || event.tokenB === address));
+        // }
 
-        if (filteredEvents.length === 0) {
-            res.status(404).json({ error: 'No events found with the given parameters' });
-            return;
-        }
+        // if (filteredEvents.length === 0) {
+        //     res.status(404).json({ error: 'No events found with the given parameters' });
+        //     return;
+        // }
 
      
-        res.json(filteredEvents);
+        // res.json(filteredEvents);
     } catch (error: any) {
         next(error);
     }

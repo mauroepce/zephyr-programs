@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import getPairs from '../utils/get-pairs';
+import getPairs from '../utils/pairs/get-pairs';
 import { Network } from '../types/network';
 import { TokenType } from '../types/tokens';
-import getTokens from '../utils/get-tokens';
+import getTokens from '../utils/tokens/get-tokens';
 import { fetchTokenList } from '../services/tokens';
 
 interface MercuryPair {
